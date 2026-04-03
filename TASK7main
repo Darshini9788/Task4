@@ -1,0 +1,70 @@
+# main.py
+from users import Student, Faculty, TempFaculty
+from functools import reduce
+# task1
+s1 = Student("Asha", 1, "CSE", 60000)
+s2 = Student("Ravi", 2, "ECE", 40000)
+
+f1 = Faculty("Dr. Rao", 101, 50000)
+tf1 = TempFaculty("Dr. Singh", 102, 35000, "6 months")
+
+
+print(s1.__dict__)
+print(s2.__dict__)
+print(f1.__dict__)
+print(tf1.__dict__)
+
+
+# task2
+
+# Create objects
+s1 = Student("Asha", 1, "CSE", 60000)
+s2 = Student("Ravi", 2, "ECE", 40000)
+
+f1 = Faculty("Dr. Rao", 101, 50000)
+tf1 = TempFaculty("Dr. Singh", 102, 35000, "6 months")
+
+for user in [s1, s2, f1, tf1]:
+    print(user.get_details())
+    
+#8 final challenge
+
+users = [
+    Student("Asha", 1, "CSE", 60000),
+    Student("Ravi", 2, "ECE", 40000),
+    Faculty("Dr. Rao", 101, 50000),
+    TempFaculty("Dr. Singh", 102, 35000, "6 months")
+]
+print("---- All User Details ----")
+details = list(map(lambda u: u.get_details(), users))
+for d in details:
+    print(d)
+    print("\n---- Sorted by User ID ----")
+sorted_users = sorted(users, key=lambda u: u.get_details())
+
+for u in sorted_users:
+    print(u.get_details())
+    print("\n---- Only Students ----")
+students = list(filter(lambda u: isinstance(u, Student), users))
+
+for s in students:
+    print(s.get_details())
+    print("\n---- High Salary Faculty ----")
+high_salary = list(filter(lambda u: hasattr(u, 'salary') and u.salary > 40000, users))
+
+for h in high_salary:
+    print(h.get_details())
+    student_fees = list(map(lambda s: s.fees, students))
+
+total_fees = reduce(lambda x, y: x + y, student_fees)
+print("\nTotal Student Fees:", total_fees)
+faculty = list(filter(lambda u: hasattr(u, 'salary'), users))
+
+salaries = list(map(lambda f: f.salary, faculty))
+
+total_salary = reduce(lambda x, y: x + y, salaries)
+print("Total Faculty Salary:", total_salary)
+
+
+    
+    
