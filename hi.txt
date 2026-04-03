@@ -1,0 +1,6 @@
+user = {"darsh", 25, "developer"}
+user = {"hari", 22, "developer"}
+user = {"dev", 23, "developer"}
+user = {"krish", 25, "developer"}
+user = {"priya", 25, "developer"}
+user = {"Maha", 25, "developer"}
