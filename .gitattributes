@@ -1,2 +1,331 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+#1.Employee management system
+
+employees=[{"name":"Karthi","age":"29","role":"Developer","salary":45000},
+           {"name":"Nishanth","age":"28","role":"Designer","salary":42000},
+           {"name":"Subash","age":"27","role":"Engineer","salary":52000},
+           {"name":"KVishnu","age":"25","role":"Manager","salary":55000} 
+            ]
+
+def add_employees():
+    name=input("enter the name:")
+    age=int(input("enter the age:"))
+    role=input("enter the role:")
+    salary=float(input("enter the salary:"))
+
+    new_employee={"name":name,"age":age,"role":role,"salary":salary}
+    employees.append(new_employee)
+
+    print("new employee added")
+
+add_employees()
+print("employee list:")
+for emp in employees:
+    print(emp)
+
+def update_employee():
+    name=input("enter employee name for update:")
+    for emp in employees:
+        if emp["name"]==name:
+            emp["age"]=int(input("enter new age:"))
+            emp["role"]=input("enter new role:")
+            emp["salary"]=float(input("enter new salary:"))
+            print("employee details updated")
+            return
+    print("employee name not exist")
+update_employee()
+print("employee list:")
+for emp in employees:
+    print(emp)
+
+def delete_employee():
+    name=input("enter employee name to delete:")
+    for emp in employees:
+        if emp["name"]==name:
+            employees.remove(emp)
+            print("employee name deleted")
+            return
+    print("employee name not exist") 
+delete_employee()
+print("employee list:")
+for emp in employees:
+    print(emp)
+
+def display_employees():
+    for emp in employees:
+        print(emp)
+    print()
+
+
+#2.Student report card
+
+name="karthi"
+student={"marks":{"maths":90,"science":88,"physics":85}}
+total=sum(student["marks"].values())
+avg=total/3
+print("student name:",name)
+print("total:",total)
+print("average:",avg),
+
+print("\nREPORT CARD")
+print("-----------------")
+print(f"name:{name}")
+print("-----------------")
+print(f"maths:{student['marks']['maths']}")
+print(f"science:{student['marks']['science']}")
+print(f"physics:{student['marks']['physics']}")
+print("-----------------")
+print(f"total:{total}")
+print(f"average:{avg:.2f}")
+
+if avg >=90:
+    grade="A+"
+elif avg>75:
+    grade="A"
+elif avg>60:
+    grade="B"
+elif avg>40:
+    grade="C"
+else:
+    grade="fail"
+print(f"grade:{grade}")
+
+#3.Shopping cart system
+cart=[]
+while True:
+    name=input("enter product name:")
+    price=float(input("enter price:"))
+    quantity=int(input("enter quantity:"))
+
+    product={"name":name,"price":price,"quantity":quantity}
+    cart.append(product)
+
+    ch=input("add product:(yes/no)")
+    if ch.lower()=="no":
+         break
+
+remove_product=input("\n enter remove product name:")
+
+for product in cart:
+    if product["name"].lower()==remove_product.lower():
+        cart.remove(product)
+        print("item removed ")
+        break
+else:
+    print("product not found")
+
+print("\n-------SHOPPING CART-------")
+
+total=0
+
+for product in cart:
+    total_item=product["price"]*product["quantity"]
+    total+=total_item
+
+    print("Name:",product["name"])
+    print("Price:",product["price"])
+    print("Quantity:",product["quantity"])
+    print("Total:",total_item)
+    print("----------------------")
+print("Final Bill:",total)
+
+#4.Login and user validation.
+users = {"karthi":"9876",
+    "subash":"kanna",
+    "nishanth":"may05",
+    "kvishnu":"ravana"}
+
+username = input("Enter username:")
+password = input("Enter password:")
+
+if username in users:
+    if users[username] == password:
+        print("Login successful! Welcome,", username)
+    else:
+        print("Incorrect password.")
+else:
+    print("Username not found.")
+
+#5.Unique visitor counter.
+visitors = set()
+
+n = int(input("Enter number of visitors:"))
+
+for i in range(n):
+    name = input(f"Enter visitor {i+1} name:")
+    visitors.add(name)  
+
+print("\nUnique Visitors:",visitors)
+print("Total Unique Visitors:",len(visitors))
+
+#6.String formatter tool
+name=input("enter the name:")
+product = input("Enter product name:")
+
+sentence = f"{name} purchased a{product}."
+print("\nFormatted Sentence:")
+print(sentence)
+
+print("\nPadded Outputs:")
+
+print("Left aligned :")
+print(sentence.ljust(40,'-'))
+
+print("Right aligned:")
+print(sentence.rjust(40,'-'))
+
+print("Center aligned:")
+
+print(sentence.center(40,'-'))
+
+#7.Bank account system
+account={}
+def create_account():
+    name = input("Enter account holder name:")
+    if name in account:
+        print("Account already exists")
+    else:
+        balance = float(input("Enter initial balance:"))
+        account[name] = balance
+        print("Account created successfully")
+
+def deposit():
+    name = input("Enter account holder name:")
+    if name in account:
+        amount = float(input("Enter amount to deposit:"))
+        account[name] += amount
+        print("Deposit successful")
+    else:
+        print("Account not found")
+
+def withdrawal():
+    name = input("Enter account holder name:")
+    if name in account:
+        amount = float(input("Enter amount to withdraw:"))
+        if amount <= account[name]:
+            account[name]-=amount
+            print("Withdrawal successful")
+        else:
+            print("Insufficient balance")
+    else:
+        print("Account not found!")
+
+def check_balance():
+    name = input("Enter account holder name:")
+    if name in account:
+        print(f"Current balance:{account[name]}")
+    else:
+        print("Account not found")
+
+while True:
+    print("\n--- Bank Menu ---")
+    print("1. Create Account")
+    print("2. Deposit")
+    print("3. Withdraw")
+    print("4. Check Balance")
+    print("5. Exit")
+
+    choice = input("Enter your choice:")
+
+    if choice == '1':
+        create_account()
+    elif choice == '2':
+        deposit()
+    elif choice == '3':
+        withdrawal()
+    elif choice == '4':
+        check_balance()
+    elif choice == '5':
+        print("Thank you.")
+        break
+    else:
+        print("Invalid choice.")
+
+#8.Voting system.
+
+votes = {"subash": 0,"nishanth": 0,"karthi": 0,"kvishnu":0}
+while True:
+    print("\nCandidates:", list(votes.keys()))
+    choice = input("Enter your vote (or type 'exit' to stop):")
+
+    if choice.lower() == 'exit':
+        break
+    elif choice in votes:
+        votes[choice] += 1
+        print("Vote recorded!")
+    else:
+        print("Invalid candidate!")
+
+print("\n--- Voting Results ---")
+for candidate, count in votes.items():
+    print(f"{candidate}: {count} votes")
+
+winner = max(votes, key=votes.get)
+print(f"\nWinner is: {winner} with {votes[winner]} votes")
+
+#9.Course enrollment system.
+
+students = {}
+
+def add_student():
+    name = input("Enter student name: ")
+    if name in students:
+        print("Student already exists!")
+    else:
+        courses = input("Enter courses:")
+        students[name] = [course.strip() for course in courses]
+        print("Student added successfully!")
+
+def update_courses():
+    name = input("Enter student name: ")
+    if name in students:
+        courses = input("Enter new courses:")
+        students[name] = [course.strip() for course in courses]
+        print("Courses updated!")
+    else:
+        print("Student not found!")
+
+def display_student():
+    name = input("Enter student name: ")
+    if name in students:
+        print(f"{name}'s Courses:", students[name])
+    else:
+        print("Student not found!")
+
+while True:
+    print("\n--- Course Enrollment System ---")
+    print("1. Add Student")
+    print("2. Update Courses")
+    print("3. Display Student")
+    print("4. Exit")
+
+    choice = input("Enter your choice: ")
+
+    if choice == '1':
+        add_student()
+    elif choice == '2':
+        update_courses()
+    elif choice == '3':
+        display_student()
+    elif choice == '4':
+        print("Exit")
+        break
+    else:
+        print("Invalid")
+
+#.10 Number utility tools.
+
+def convert_number(num):
+    print("\nConversions:")
+    print(f"Binary : {bin(num)}")
+    print(f"Octal  : {oct(num)}")
+    print(f"Hexadecimal : {hex(num)}")
+
+def format_number(num):
+    print("\nFormatted Number:")
+    print(f"With commas: {num:,}")
+    print(f"Scientific notation: {num:.2e}")
+
+number = int(input("Enter a number:"))
+
+convert_number(number)
+format_number(number)
