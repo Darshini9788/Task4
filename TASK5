@@ -1,0 +1,131 @@
+# Task 1: User Info Manager (Functions + Dictionary)
+# Create a function:
+# def create_user(name, age, role):
+# Return user as a dictionary
+# Store multiple users in a list
+# Print all users
+# 👉 Add:
+# Format names using .title()
+
+def create_user(name, age, role):
+    return {
+        "name": name.title(),  # Format name using .title()
+        "age": age,
+        "role": role
+    }
+
+users = []
+
+users.append(create_user(" bhavya", 26, "developer"))
+users.append(create_user(" chandra", 25, "designer"))
+users.append(create_user(" Sirigiri", 24, "manager"))
+for user in users:
+    print(user)
+    
+#     Task 2: Dynamic Calculator (*args)
+# Create:
+# def calculate_total(*numbers):
+# Return sum of all numbers
+# Accept unlimited inputs
+# 👉 Bonus:
+# Also return average
+
+def calculate_total(*numbers):
+    total = sum(numbers)
+    average = total / len(numbers) if numbers else 0
+    return total, average
+ 
+total, avg = calculate_total(10, 20, 30, 40, 50)
+print(f"\nTotal: {total}, Average: {avg}")
+
+
+# Task 3: Keyword Config System (**kwargs)
+# Create:
+# def system_config(**settings):
+# Print all key-value pairs
+# 👉 Example:
+# mode: debug
+# version: 1.0
+  
+def system_config(**settings):
+    for key, value in settings.items():
+        print(f"{key}: {value}")
+        print("System Config:")
+system_config(mode="debug", version="1.0")
+
+
+# Task 4: Factorial Service (Recursion)
+# Create:
+# def factorial(n):
+# Handle:
+# n = 0
+# negative numbers (show error)
+
+
+def factorial(n):
+   
+    if n < 0:
+        print("Error: Factorial is not defined for negative numbers")
+        return None
+    if n == 0:
+        return 1
+    return n * factorial(n - 1)
+print(factorial(5))
+print(factorial(0))
+print(factorial(-3))
+
+# Task 5: Memory Optimization (Generator)
+# Create:
+# def square_generator(n):
+# Yield squares instead of storing in list
+# 👉 Compare:
+# Normal list vs generator (print type)
+
+def square_generator(n):
+    for i in range(n):
+        yield i*i
+
+gen = square_generator(5)
+lst = [i*i for i in range(5)]
+
+print(type(gen))
+print(type(lst))
+
+# Task 6: Exception Handling Module
+# Take input:
+# numerator
+# denominator
+# Handle:
+# divide by zero
+# invalid input
+# 👉 Always print:
+# Program Completed
+try:
+    numerator = int(input("Enter numerator: "))
+    denominator = int(input("Enter denominator: "))
+    
+    result = numerator / denominator
+    print( result)
+
+except ZeroDivisionError:
+    print("Error: Cannot divide by zero")
+
+except ValueError:
+    print("Error: Invalid input, please enter numbers only")
+
+finally:
+    print("Program Completed")
+    
+#     Task 7: File Handling
+# Create file: team_data.txt
+# Write user details into file
+# Read and display content
+# 👉 Bonus:
+# Check if file is closed
+
+file_path = "hi.txt"
+file = open(file_path, "r")
+content = file.read()
+print(content)
+file.close()
+print("Is file closed before closing?", file.closed)
